@@ -4,7 +4,7 @@ import Window from 'window';
 global.document = new Window().document;
 
 hljs.configure({ ignoreUnescapedHTML: true })
-const { highlight, highlightBlock } = hljs
+const { highlight, highlightElement } = hljs
 
 main()
 
@@ -54,7 +54,7 @@ function highlightRaw(lang, value) {
     const node = pre.childNodes[0]
 
     // https://github.com/highlightjs/highlight.js/issues/2886
-    highlightBlock(node)
+    highlightElement(node)
 
     return node.innerHTML;
 }
