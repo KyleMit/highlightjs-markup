@@ -53,7 +53,9 @@ function highlightRaw(lang, value) {
     pre.innerHTML = `<code class="language-${lang}">${value}</code>`
     const node = pre.childNodes[0]
 
+    // https://highlightjs.readthedocs.io/en/latest/upgrade-11.html#feature-removal
     // https://github.com/highlightjs/highlight.js/issues/2886
+    // https://github.com/highlightjs/highlight.js/issues/2889
     highlightElement(node)
 
     return node.innerHTML;
