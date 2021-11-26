@@ -1,7 +1,10 @@
 import { promises as fs } from "fs";
 import hljs from "highlight.js";
 import Window from 'window';
-const { highlight, highlightElement } = hljs
+global.document = new Window().document;
+
+hljs.configure({ ignoreUnescapedHTML: true })
+const { highlight, highlightBlock } = hljs
 
 main()
 
@@ -16,7 +19,7 @@ async function main() {
 
     const html = `
 <html>
-<title>HighlightJS Demo</tile>
+<title>HighlightJS Demo</title>
 <body>
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/styles/github.min.css" />
@@ -43,7 +46,7 @@ function highlightCode(lang, value) {
 
 function highlightRaw(lang, value) {
     // get window methods
-    const { document } = new Window();
+
 
     // create text as node
     const pre = document.createElement('pre');
@@ -51,7 +54,7 @@ function highlightRaw(lang, value) {
     const node = pre.childNodes[0]
 
     // https://github.com/highlightjs/highlight.js/issues/2886
-    highlightElement(node)
+    highlightBlock(node)
 
     return node.innerHTML;
 }
